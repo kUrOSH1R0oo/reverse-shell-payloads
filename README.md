@@ -15,5 +15,5 @@ This repository contains all of the payloads I've used in my CTFs, some of this 
 *Don't ever use these payloads for illegal purposes!!*
 
 ## Author
-- All was developed by me(Veilwr4ith)
+- All was developed by me(Zephyr)
 
