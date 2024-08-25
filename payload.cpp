@@ -1,5 +1,5 @@
 /*
- * Payload created by veilwr4ith
+ * Payload created by Zephyr
  * Warning: This script is intended for educational purposes only.
  * Unauthorized use, deployment, or distribution of this payload
  * is illegal and unethical. Use responsibly and only in environments
