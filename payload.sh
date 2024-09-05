@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Developed by Zephyr
+# Developed by Kuraiyume
 # WARNING: This script is intended for educational purposes only. 
 # NEVER USE THIS PAYLOAD FOR ILLEGAL ACTIVITIES. Unauthorized use 
 # of this script can result in serious legal consequences. Use 
