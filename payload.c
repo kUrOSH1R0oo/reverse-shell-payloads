@@ -1,5 +1,5 @@
 /*
- * Payload created by Zephyr
+ * Payload created by Kuraiyume
  * Warning: This script is intended for educational purposes only. 
  * Unauthorized use, deployment, or distribution of this payload 
  * is illegal and unethical. Use responsibly and only in environments 
